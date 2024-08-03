@@ -3,7 +3,10 @@
 - Create React app
 - Configured TailwindCSS
 - Header
+- Routing
 - Login Form
+- Sign up Form
+- Form validation
 
 # Features
 
