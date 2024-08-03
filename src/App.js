@@ -1,13 +1,7 @@
-import "./App.css";
+import Body from "./components/Body";
 
 function App() {
-  return (
-    <div className="App">
-      <h1 className="font-bold text-3xl text-blue-400">
-        Dylan NetFlix app. Building the netflix clone app.
-      </h1>
-    </div>
-  );
+  return <Body />;
 }
 
 export default App;
