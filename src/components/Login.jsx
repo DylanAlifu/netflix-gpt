@@ -7,9 +7,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BACKGROUND_IMG, GITHUB_AVATAR, PROFILE_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -22,7 +22,6 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,70 +31,62 @@ const Login = () => {
 
   const toggleSignForm = () => {
     setIsSignInForm((prev) => !prev);
-    setErrorMessage(null);
+    setErrorMessage("");
   };
 
-  const handleButtonClick = (e) => {
-    // validate the form data
+  const handleButtonClick = async () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    const errorMessage = checkValidationData(email, password);
-    setErrorMessage(errorMessage);
-    if (errorMessage) return;
+    const error = checkValidationData(email, password);
+    setErrorMessage(error);
+    if (error) return;
 
-    if (!isSignInForm) {
-      // Sign up logic
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-
-          updateProfile(user, {
-            displayName: nameRef.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/127254347?v=4",
+    try {
+      if (isSignInForm) {
+        // Sign in logic
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+        setEmail("");
+        setPassword("");
+        dispatch(
+          addUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: PROFILE_AVATAR,
           })
-            .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
-              dispatch(
-                addUser({
-                  uid: uid,
-                  email: email,
-                  displayName: displayName,
-                  photoURL: photoURL,
-                })
-              );
-              navigate("/browse");
-            })
-            .catch((error) => {
-              setErrorMessage(error.message);
-            });
-
-          setUsername("");
-          setEmail("");
-          setPassword("");
-          console.log(user);
-          navigate("/browse");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorCode + " - " + errorMessage);
+        );
+      } else {
+        // Sign up logic
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+        await updateProfile(user, {
+          displayName: nameRef.current.value,
+          photoURL: PROFILE_AVATAR,
         });
-    } else {
-      // Sign in logic
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          setEmail("");
-          setPassword("");
-          console.log(user);
-          navigate("/browse");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorCode + " - " + errorMessage);
-        });
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        dispatch(
+          addUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          })
+        );
+      }
+    } catch (error) {
+      setErrorMessage(`${error.code} - ${error.message}`);
     }
   };
 
@@ -105,14 +96,13 @@ const Login = () => {
       <div className="absolute w-full h-full">
         <img
           className="w-full h-full object-cover brightness-50"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/826348c2-cdcb-42a0-bc11-a788478ba5a2/f5a613af-ff99-444d-8305-e4cecd6d6cf6/US-en-20240729-POP_SIGNUP_TWO_WEEKS-perspective_WEB_591dffe8-33f4-4fb4-a734-9ff362a96145_large.jpg"
+          src={BACKGROUND_IMG}
           alt="background-image"
         />
       </div>
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        action=""
         className="absolute top-[460px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-12 bg-[rgba(0,0,0,0.7)] w-[480px] h-[740px] opacity-100 flex flex-col rounded-lg"
       >
         <h1 className="font-semibold text-4xl text-white m-3">
