@@ -11,15 +11,13 @@ const BACKGROUND_IMG =
 
 const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
-const OPEN_AI_KEY =
-  "sk-0y3PpNCAdFJsiCpm7w5pbKheem0_5y1rIVbV5PzxOcT3BlbkFJT3_AR06bVV2CADv3NtOExSHncYbuxWV-ZPPIRJkdYA";
+const OPEN_AI_KEY = process.env.REACT_APP_OPEN_AI_KEY;
 
 const API_OPTION = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Yzk2ODI2ZTFlMjFlN2QxMWMzYmRiM2ZhN2JlNmJmNiIsIm5iZiI6MTcyMjcyOTI5NS4zOTkwMTUsInN1YiI6IjY2YWVjMjhhNWUxODIwMGY1ZDJlMzVhYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CbiDRnDBKfOv7isKlOpbaguO8n5cGaiTWbVGbRLUt98",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
   },
 };
 
