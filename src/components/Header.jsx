@@ -63,14 +63,14 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex items-center justify-between">
+    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex items-center flex-col md:justify-between md:flex-row">
       <img className="w-44" src={LOGO_IMG} alt="logo" />
 
       {user && (
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           {!showGptSearch && (
             <select
-              className="bg-black text-gray-400 border border-gray-500 p-2 rounded leading-tight focus:outline-none"
+              className="bg-black text-gray-400 border border-gray-500 p-2 rounded leading-tight focus:outline-none text-[12px] md:text-base"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((language) => (
@@ -82,7 +82,7 @@ const Header = () => {
           )}
 
           <button
-            className="bg-purple-600 text-white py-2 px-4 mr-8 w-32 rounded-md hover:bg-purple-900"
+            className="bg-purple-600 text-white py-2 md:px-4 px-2 md:mr-8 md:w-32 rounded-md hover:bg-purple-900 text-[12px] md:text-base"
             onClick={handleGptSearchClick}
           >
             {showGptSearch ? "Home" : language[langKey].gptSearch}
@@ -90,10 +90,10 @@ const Header = () => {
           <img
             src={user?.photoURL}
             alt="user-icon"
-            className="w-12 h-fit rounded-full"
+            className="w-8 md:w-12 h-fit rounded-full"
           />
           <button
-            className="bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-900 bg-opacity-50"
+            className="bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-900 bg-opacity-50 text-[12px] md:text-base"
             onClick={handleSignOut}
           >
             {language[langKey].signOut}

@@ -21,7 +21,7 @@ const MainContainer = () => {
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="relative scroll">
+    <div className="relative scroll pt-[30%] md:pt-0 bg-black">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>

@@ -9,7 +9,7 @@ const SecondaryContainer = () => {
 
   return (
     <div className="bg-black w-screen">
-      <div className="-mt-[340px] relative z-10 px-16">
+      <div className="md:-mt-[340px] relative z-10 md:px-16">
         {movies.nowPlayingMovies && (
           <MovieList title={language[langKey].nowPlaying} movies={movies.nowPlayingMovies} />
         )}

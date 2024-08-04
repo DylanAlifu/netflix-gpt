@@ -103,9 +103,9 @@ const Login = () => {
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute top-[460px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-12 bg-[rgba(0,0,0,0.7)] w-[480px] h-[740px] opacity-100 flex flex-col rounded-lg"
+        className="absolute top-[460px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:p-12 p-10 bg-[rgba(0,0,0,0.7)] md:w-[480px] md:h-[740px] opacity-100 flex flex-col rounded-lg gap-2"
       >
-        <h1 className="font-semibold text-4xl text-white m-3">
+        <h1 className="font-semibold md:text-4xl text-xl text-white m-3">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
@@ -113,7 +113,7 @@ const Login = () => {
             ref={nameRef}
             type="text"
             placeholder="Full Name"
-            className="p-4 m-4 -mb-1 bg-inherit border border-gray-400  rounded-md text-white"
+            className="p-4 md:m-4 md:-mb-1 bg-inherit border border-gray-400  rounded-md text-white"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -124,7 +124,7 @@ const Login = () => {
           placeholder="Email Address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={`p-4 m-4 -mb-1 bg-inherit border border-gray-400 ${
+          className={`p-4 md:m-4 md:-mb-1 bg-inherit border border-gray-400 ${
             errorMessage && "border-red-600"
           } rounded-md text-white`}
         />
@@ -134,34 +134,34 @@ const Login = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="p-4 m-4 bg-inherit border border-gray-400 rounded-md text-white"
+          className="p-4 md:m-4 bg-inherit border border-gray-400 rounded-md text-white"
         />
         {errorMessage && (
           <p className="text-red-600 mx-4 p-2">❌ {errorMessage}</p>
         )}
 
         <button
-          className="p-4 m-4 text-white bg-red-700 rounded-md"
+          className="p-4 md:m-4 text-white bg-red-700 rounded-md"
           onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-        <p className="text-lg text-gray-400 text-center my-4">OR</p>
+        <p className="md:text-lg text-gray-400 text-center my-4">OR</p>
 
         <div className="m-4 flex flex-col gap-8">
           <div className="flex gap-2 items-center">
-            <p className="text-gray-400 text-xl">
+            <p className="text-gray-400 md:text-xl text-md">
               {isSignInForm ? "New to Netflix?" : "Already have an account?"}
             </p>
             <button
               type="button"
-              className="text-white text-xl"
+              className="text-white md:text-xl"
               onClick={toggleSignForm}
             >
               {isSignInForm ? "Sign up now." : "Sign in now."}
             </button>
           </div>
-          <p className="text-gray-400">
+          <p className="text-gray-400 text-sm">
             This page is my personal project and for practice purposes only.
             <a href="/" className="text-blue-600 ml-2">
               Learn more.
