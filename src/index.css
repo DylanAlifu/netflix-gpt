@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.secondary-container {
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 20%, /* 0% opacity at the top 20% */
+    rgba(0, 0, 0, 1) 20% /* 100% opacity for the remaining 80% */
+  );
+  padding: 20px; /* Adjust as needed */
+  border-radius: 10px; /* Optional, for rounded corners */
+  margin-top: -350px; /* Adjust as needed */
+  z-index: 10;
+}
