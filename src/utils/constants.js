@@ -11,6 +11,9 @@ const BACKGROUND_IMG =
 
 const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
+const OPEN_AI_KEY =
+  "sk-0y3PpNCAdFJsiCpm7w5pbKheem0_5y1rIVbV5PzxOcT3BlbkFJT3_AR06bVV2CADv3NtOExSHncYbuxWV-ZPPIRJkdYA";
+
 const API_OPTION = {
   method: "GET",
   headers: {
@@ -39,4 +42,5 @@ export {
   API_OPTION,
   IMAGE_CDN_URL,
   SUPPORTED_LANGUAGES,
+  OPEN_AI_KEY,
 };
