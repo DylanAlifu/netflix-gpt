@@ -19,6 +19,18 @@ const API_OPTION = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Yzk2ODI2ZTFlMjFlN2QxMWMzYmRiM2ZhN2JlNmJmNiIsIm5iZiI6MTcyMjcyOTI5NS4zOTkwMTUsInN1YiI6IjY2YWVjMjhhNWUxODIwMGY1ZDJlMzVhYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CbiDRnDBKfOv7isKlOpbaguO8n5cGaiTWbVGbRLUt98",
   },
 };
+
+const SUPPORTED_LANGUAGES = [
+  {
+    identifier: "en",
+    name: "English",
+  },
+  {
+    identifier: "cn",
+    name: "Chinese",
+  },
+];
+
 export {
   LOGO_IMG,
   GITHUB_AVATAR,
@@ -26,4 +38,5 @@ export {
   PROFILE_AVATAR,
   API_OPTION,
   IMAGE_CDN_URL,
+  SUPPORTED_LANGUAGES,
 };
